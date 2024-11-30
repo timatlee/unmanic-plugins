@@ -71,7 +71,7 @@ def on_library_management_file_test(data):
     abspath = data.get('path')
 
     # Get file probe
-    probe = Probe(logger, allowed_mimetypes=['video'])
+    probe = Probe(logger)
     if not probe.file(abspath):
         # File probe failed, skip the rest of this test
         return data
@@ -137,8 +137,14 @@ def on_worker_process(data):
 
 
     if mapper.streams_need_processing():
+        logger.debug("Needs processing")
         mapper.set_output_file(data.get('file_out'))
-        mapper.advanced_options = ['-vf', 'scale={}'.format(mapper.calculate_resolution())]
+        mapper.set_ffmpeg_advanced_options('-vf', 'scale={}'.format(mapper.calculate_resolution()))
+
+        # Not quite sure why, cuz I don't really know what PluginStreamMapper "does"..  but if stream_encoding and stream_mapping is set, we wind up
+        # not doing anything with the video stream - and only copy the audio stream
+        mapper.stream_encoding = ""
+        mapper.stream_mapping = ""
         ffmpeg_args = mapper.get_ffmpeg_args()
 
         logger.debug(ffmpeg_args)
@@ -151,6 +157,7 @@ def on_worker_process(data):
         parser = Parser(logger)
         parser.set_probe(probe)
         data['command_progress_parser'] = parser.parse_progress
+
     return data
 
 
@@ -195,7 +202,7 @@ class PluginStreamMapper(StreamMapper):
         if (stream_info['height'] > desired_height):
             return True
 
-        return True
+        return False
 
     def custom_stream_mapping(self, stream_info: dict, stream_id: int):
         return {
