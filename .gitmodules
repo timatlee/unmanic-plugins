@@ -1,0 +1,3 @@
+[submodule "source/resize_video/lib/ffmpeg"]
+	path = source/resize_video/lib/ffmpeg
+	url = https://github.com/Josh5/unmanic.plugin.helpers.ffmpeg.git
