@@ -1,0 +1,27 @@
+{
+    "repo": {
+        "id": "repository.timatlee",
+        "name": "Tims Unmanic Plugins",
+        "icon": "",
+        "repo_data_directory": "https://raw.githubusercontent.com/timatlee/unmanic-plugins/repo/",
+        "repo_data_url": "https://raw.githubusercontent.com/timatlee/unmanic-plugins/repo/repo.json"
+    },
+    "plugins": [
+        {
+            "author": "Tim AtLee",
+            "compatibility": [
+                2
+            ],
+            "description": "Resize videos",
+            "icon": "",
+            "id": "resize_video",
+            "name": "Resize video files",
+            "priorities": {
+                "on_library_management_file_test": 99,
+                "on_worker_process": 0
+            },
+            "tags": "ffmpeg,library file test,resize",
+            "version": "0.0.3"
+        }
+    ]
+}

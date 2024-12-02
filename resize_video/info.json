@@ -1,0 +1,16 @@
+{
+    "author": "Tim AtLee",
+    "compatibility": [
+        2
+    ],
+    "description": "Resize videos",
+    "icon": "",
+    "id": "resize_video",
+    "name": "Resize video files",
+    "priorities": {
+        "on_library_management_file_test": 99,
+        "on_worker_process": 0
+    },
+    "tags": "ffmpeg,library file test,resize",
+    "version": "0.0.3"
+}
