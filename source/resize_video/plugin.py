@@ -40,11 +40,7 @@ class Settings(PluginSettings):
                     {
                         'value': "2160",
                         'label': "Ultra HD (3840x2160)",
-                    },
-                    {
-                        'value': "1080",
-                        'label': "Full HD (1920x1080)",
-                    },
+                    }
                 ],
             },
     }
